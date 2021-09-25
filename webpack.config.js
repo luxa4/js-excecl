@@ -24,6 +24,7 @@ module.exports = (env, argv) => {
   }
 
   return {
+    target: 'web',
     context: path.resolve(__dirname, 'src'),
     entry: {
       main: ['@babel/polyfill', './index.js']
@@ -57,7 +58,12 @@ module.exports = (env, argv) => {
           }
         }
       ],
+    },
+    devServer: {
+      watchFiles: './index.html',
+      port: '3000',
+      open: true,
+      hot: true
     }
-
   }
 }
