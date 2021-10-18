@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = (env, argv) => {
   const isProd = argv.mode === 'production'
@@ -16,6 +17,7 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: '[name].bundle.css'
       }),
+      new CleanWebpackPlugin()
     ]
 
     if (isDev) base.push(new ESLintPlugin())
@@ -33,7 +35,14 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].bundle.js'
     },
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+        '@core': path.resolve(__dirname, 'src/core')
+      }
+    },
     plugins: plugins(),
+    devtool: isDev ? 'source-map' : false,
     module: {
       rules: [
         {
@@ -60,10 +69,10 @@ module.exports = (env, argv) => {
       ],
     },
     devServer: {
-      watchFiles: './index.html',
-      port: '3000',
+      port: 3000,
       open: true,
-      hot: true
+      hot: true,
+      watchFiles: './',
     }
   }
 }
