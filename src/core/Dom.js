@@ -5,6 +5,8 @@ class Dom {
         : selector
   }
 
+  on() {}
+
   html(html) {
     if (typeof html === 'string') {
       this.$el.innerHTML = html;
