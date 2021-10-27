@@ -5,7 +5,9 @@ class Dom {
         : selector
   }
 
-  on() {}
+  on(eventType, callback) {
+    this.$el.addEventListener(eventType, callback);
+  }
 
   html(html) {
     if (typeof html === 'string') {
@@ -41,6 +43,7 @@ export function $(selector) {
   return new Dom(selector);
 }
 
+// Создание селектора как класса DOM с методами
 $.create = (tagName, classes = '') => {
   const el = document.createElement(tagName);
 

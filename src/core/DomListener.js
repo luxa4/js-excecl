@@ -1,5 +1,7 @@
+import {getCapitalize} from './utils';
+
 export class DomListener {
-  constructor($root, listeners =[]) {
+  constructor($root, listeners = []) {
     if (!$root) {
       throw new Error('$root dont provide for DomListener');
     }
@@ -10,8 +12,26 @@ export class DomListener {
 
   // Этот метод должен вызываться после такого как отрисован DOM
   initDOMListener() {
-    console.log(this.listeners)
+    this.listeners.forEach(listener => {
+      const method = getMethodName(listener);
+
+      if (!this[method]) {
+        throw new Error(`Method ${method} is not implemented in ${this.name} Component`);
+      }
+      console.log(method)
+
+      // Dom element
+      this.$root.on(listener, this[method].bind(this))
+    });
   }
 
-  removeDOMListener() {}
+  removeDOMListener() {
+    // realize
+  }
+}
+
+
+// input => onInput
+function getMethodName(eventName) {
+  return 'on' + getCapitalize(eventName);
 }
