@@ -13,10 +13,10 @@ export class Excel {
       const $el = $.create('div', Component.className);
       const component = new Component($el);
       $el.innerHTML = component.toHTML();
-      console.log(`Добавляем в иннер`, component.toHTML())
-      console.log(`Элемент с добавлением`, $el)
+      console.log(component.toHTML())
+      console.log($el.innerHTML)
       $root.append($el);
-      console.log(`Добавили в Excel`, $root)
+      console.log($root)
       return component;
     })
 
@@ -25,6 +25,7 @@ export class Excel {
 
   render() {
     this.$el.append(this.getRoot())
+    console.log(`Render`, this.$el)
 
     this.components.forEach(component => component.init())
   }

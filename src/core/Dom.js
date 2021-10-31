@@ -9,6 +9,11 @@ class Dom {
     this.$el.addEventListener(eventType, callback);
   }
 
+  // Delete listeners
+  off(evenType, callback) {
+    this.$el.removeEventListener(evenType, callback)
+  }
+
   html(html) {
     if (typeof html === 'string') {
       this.$el.innerHTML = html;
