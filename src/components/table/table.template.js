@@ -12,12 +12,8 @@ function creareRow() {
   `
 }
 
-function createCol() {
-  return `
-      <div class="column">
-       A
-      </div>
-  `
+function createCol(content) {
+  return `<div class="column"> {content} </div>`
 }
 
 function createCell() {
@@ -28,8 +24,23 @@ function createCell() {
   `
 }
 
+function toChar() {
+
+}
+
+function toColumn() {
+
+}
+
 export function createTable(rowsCount = 15) {
   const colsCount = CODES.Z - CODES.A
   const rows = []
-  return `<h1>Table</h1>`
+
+  const rows = new Array(colsCount)
+    .fill('')
+    .map(el, index => {
+      return
+    })
+
+  return rows.join('')
 }
