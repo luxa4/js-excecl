@@ -3,7 +3,15 @@
 
 .excel__toolbar
   position: absolute
-  top:  $header-height+$toolbar-height
+  //background: darkred
+  top:  $header-height
   right: 0
   left: 0
   height: $toolbar-height
+  border-top: 1px solid $border-color
+  border-bottom: 1px solid $border-color
+  padding: 7px 10px
+  display: flex
+
+  .button
+    +button(green)
