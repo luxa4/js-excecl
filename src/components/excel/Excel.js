@@ -12,11 +12,10 @@ export class Excel {
     this.components = this.components.map( (Component) => {
       const $el = $.create('div', Component.className);
       const component = new Component($el);
-      $el.innerHTML = component.toHTML();
-      console.log(component.toHTML())
-      console.log($el.innerHTML)
+      $el.html(component.toHTML()); // тут была ошибка, не туда вводил innerHtml
       $root.append($el);
-      console.log($root)
+
+
       return component;
     })
 
@@ -25,7 +24,6 @@ export class Excel {
 
   render() {
     this.$el.append(this.getRoot())
-    console.log(`Render`, this.$el)
 
     this.components.forEach(component => component.init())
   }
